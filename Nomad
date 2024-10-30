@@ -36,7 +36,7 @@ prices = {
 
     # Extras
     "cheese": 50,
-    "spicy": 0,  # Assuming no additional cost for spiciness
+    "spicy": 0, 
     "peanut sauce": 0,
     "hummus": 0,
     "brown rice": 0,
@@ -115,14 +115,14 @@ def user_option():
 def view_order():
     if order:
         print("\nYOUR ORDER:")
-        total_cost = 0  # Initialize total cost
+        total_cost = 0  
         for item, cost in order:
-            print(f"{item}: ₹{cost}")  # Print each item with its cost
-            total_cost += cost  # Add cost to total
-        print(f"Total cost: ₹{total_cost}")  # Print total cost
+            print(f"{item}: ₹{cost}")  
+            total_cost += cost 
+        print(f"Total cost: ₹{total_cost}")  
     else:
         print("Your order is currently empty.")
-    print()  # New line for better readability
+    print()  
     user_option()
 
 
@@ -189,9 +189,9 @@ def main():
     else:
         print("Invalid choice")
         user_option()
-        return  # Exit the function if invalid choice
+        return  
 
-    order.append((user_food.capitalize(), item_cost))  # Append to order
+    order.append((user_food.capitalize(), item_cost))  
     user_option()
 
 
@@ -201,7 +201,7 @@ def drinks():
     if user_food in ["iced tea", "sprite", "pepsi", "masala chai", "cold coffee", "mango lassi"]:
         order.append((user_food.capitalize(), item_cost))  # Append to order with cost
     elif user_food == "water":
-        order.append(("Water", item_cost))  # Water has no cost
+        order.append(("Water", item_cost)) 
     else:
         print("Invalid choice")
     user_option()
@@ -219,7 +219,7 @@ def desserts():
         vanilla = input("Add vanilla? yes/no: ").lower()
         butterscotch = input("Add butterscotch? yes/no: ").lower()
     elif user_food == "kulfi with saffron and pistachio":
-        pass  # No extras
+        pass  
     elif user_food == "tiramisu":
         w_c = input("Add whipped cream? yes/no: ").lower()
         if w_c == "yes":
@@ -234,7 +234,7 @@ def desserts():
             item_cost += prices["whipped cream"]
     else:
         print("Invalid choice")
-    order.append((user_food.capitalize(), item_cost))  # Append to order
+    order.append((user_food.capitalize(), item_cost))  
     user_option()
 
 
