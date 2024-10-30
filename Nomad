@@ -1,0 +1,244 @@
+order = []
+prices = {
+    # Appetizers
+    "salad": 100,
+    "chips & salsa": 150,
+    "soup": 100,
+    "thai chicken satay": 200,
+    "tandoori lobster bites": 250,
+    "panipuri shooters": 80,
+    "veg fried fritters": 80,
+
+    # Mains
+    "pasta": 200,
+    "burger": 120,
+    "pizza": 170,
+    "butter chicken with naan": 220,
+    "thai green curry": 240,
+    "mashed potato": 100,
+
+    # Drinks
+    "mango lassi": 70,
+    "water": 0,
+    "iced tea": 40,
+    "masala chai": 20,
+    "sprite": 20,
+    "pepsi": 20,
+    "cold coffee": 40,
+
+    # Desserts
+    "choco lava cake": 100,
+    "ice cream": 50,
+    "kulfi with saffron and pistachio": 80,
+    "tiramisu": 120,
+    "gulab jamun": 50,
+    "cheesecake": 150,
+
+    # Extras
+    "cheese": 50,
+    "spicy": 0,  # Assuming no additional cost for spiciness
+    "peanut sauce": 0,
+    "hummus": 0,
+    "brown rice": 0,
+    "kidney beans": 0,
+    "vegetables": 0,
+    "whipped cream": 0,
+    "ice cream": 0
+}
+
+
+def menu():
+    print("--NOMAD MENU--")
+    print("1. Appetizers")
+    print("2. Mains")
+    print("3. Drinks")
+    print("4. Desserts")
+    print("5. View order")
+    print("6. Exit")
+    print()
+
+
+def user_option():
+    choice = int(input("Choose from the menu & enter a number 1-6: "))
+    if choice == 1:
+        print()
+        print("APPETIZERS - here are the appetizers")
+        print("Salad - ₹100")
+        print("Chips & salsa - ₹150")
+        print("Soup - ₹100")
+        print("Thai chicken satay - ₹200")
+        print("Tandoori lobster bites - ₹250")
+        print("PaniPuri shooters - ₹80")
+        print("Veg fried fritters - ₹80")
+        app()
+    elif choice == 2:
+        print()
+        print("MAINS - here are the mains")
+        print("Pasta - ₹200")
+        print("Burger - ₹120")
+        print("Pizza - ₹170")
+        print("Butter chicken with naan - ₹220")
+        print("Thai green curry - ₹240")
+        print("Mashed potato - ₹100")
+        main()
+    elif choice == 3:
+        print()
+        print("DRINKS - here are the drinks")
+        print("Mango lassi - ₹70")
+        print("Water - ₹0")
+        print("Iced tea - ₹40")
+        print("Masala chai - ₹20")
+        print("Sprite - ₹20")
+        print("Pepsi - ₹20")
+        print("Cold coffee - ₹40")
+        drinks()
+    elif choice == 4:
+        print()
+        print("DESSERTS - here are the desserts")
+        print("Choco lava cake - ₹100")
+        print("Ice cream - ₹50")
+        print("Kulfi with saffron and pistachio - ₹80")
+        print("Tiramisu - ₹120")
+        print("Gulab jamun - ₹50")
+        print("Cheesecake - ₹150")
+        desserts()
+    elif choice == 5:
+        view_order()
+    elif choice == 6:
+        print("Exiting")
+        exit()
+    else:
+        print("Invalid choice, please enter a valid option.")
+        user_option()
+
+
+def view_order():
+    if order:
+        print("\nYOUR ORDER:")
+        total_cost = 0  # Initialize total cost
+        for item, cost in order:
+            print(f"{item}: ₹{cost}")  # Print each item with its cost
+            total_cost += cost  # Add cost to total
+        print(f"Total cost: ₹{total_cost}")  # Print total cost
+    else:
+        print("Your order is currently empty.")
+    print()  # New line for better readability
+    user_option()
+
+
+def app():
+    user_food = input("Choose your appetizer: ").lower()
+    if user_food == "salad":
+        cheese = input("Add cheese? (+₹50) yes/no: ").lower()
+        item_cost = prices[user_food]
+        if cheese == "yes":
+            item_cost += prices["cheese"]
+        order.append((user_food.capitalize(), item_cost))
+    elif user_food == "chips & salsa":
+        spicy = input("Spicy? yes/no: ").lower()
+        item_cost = prices[user_food]
+        order.append((user_food.capitalize(), item_cost))
+    elif user_food == "soup":
+        soup_type = input("Chicken noodle or mushroom?: ").lower()
+        item_cost = prices[user_food]
+        order.append((user_food.capitalize(), item_cost))
+    elif user_food == "thai chicken satay":
+        peanut_sauce = input("Add peanut sauce? yes/no: ").lower()
+        hummus = input("Add hummus? yes/no: ").lower()
+        item_cost = prices[user_food]
+        if peanut_sauce == "yes":
+            item_cost += prices["peanut sauce"]
+        if hummus == "yes":
+            item_cost += prices["hummus"]
+        order.append((user_food.capitalize(), item_cost))
+    elif user_food == "tandoori lobster bites":
+        item_cost = prices[user_food]
+        order.append((user_food.capitalize(), item_cost))
+    elif user_food == "panipuri shooters":
+        item_cost = prices[user_food]
+        order.append((user_food.capitalize(), item_cost))
+    elif user_food == "veg fried fritters":
+        item_cost = prices[user_food]
+        order.append((user_food.capitalize(), item_cost))
+    else:
+        print("Invalid choice")
+    user_option()
+
+
+def main():
+    user_food = input("Choose your main: ").lower()
+    item_cost = prices.get(user_food, 0)
+    if user_food == "pasta":
+        cheese_2 = input("Add cheese? yes/no: ").lower()
+        if cheese_2 == "yes":
+            item_cost += prices["cheese"]
+    elif user_food == "burger":
+        onions = input("Add onions? yes/no: ").lower()
+        pickles = input("Add pickles? yes/no: ").lower()
+    elif user_food == "pizza":
+        pizza_type = input("Cheese or pepperoni?: ").lower()
+    elif user_food == "butter chicken with naan":
+        pass  # No extras
+    elif user_food == "thai green curry":
+        brown_rice = input("Add brown rice? yes/no: ").lower()
+        if brown_rice == "yes":
+            item_cost += prices["brown rice"]
+    elif user_food == "mashed potato":
+        kidney_beans = input("Add kidney beans? yes/no: ").lower()
+        vegetables = input("Add vegetables? yes/no: ").lower()
+    else:
+        print("Invalid choice")
+        user_option()
+        return  # Exit the function if invalid choice
+
+    order.append((user_food.capitalize(), item_cost))  # Append to order
+    user_option()
+
+
+def drinks():
+    user_food = input("Choose your drink: ").lower()
+    item_cost = prices.get(user_food, 0)
+    if user_food in ["iced tea", "sprite", "pepsi", "masala chai", "cold coffee", "mango lassi"]:
+        order.append((user_food.capitalize(), item_cost))  # Append to order with cost
+    elif user_food == "water":
+        order.append(("Water", item_cost))  # Water has no cost
+    else:
+        print("Invalid choice")
+    user_option()
+
+
+def desserts():
+    user_food = input("Choose your dessert: ").lower()
+    item_cost = prices.get(user_food, 0)
+    if user_food == "choco lava cake":
+        w_c = input("Add whipped cream? yes/no: ").lower()
+        if w_c == "yes":
+            item_cost += prices["whipped cream"]
+    elif user_food == "ice cream":
+        chocolate = input("Add chocolate? yes/no: ").lower()
+        vanilla = input("Add vanilla? yes/no: ").lower()
+        butterscotch = input("Add butterscotch? yes/no: ").lower()
+    elif user_food == "kulfi with saffron and pistachio":
+        pass  # No extras
+    elif user_food == "tiramisu":
+        w_c = input("Add whipped cream? yes/no: ").lower()
+        if w_c == "yes":
+            item_cost += prices["whipped cream"]
+    elif user_food == "gulab jamun":
+        ice_cream = input("Add ice cream? yes/no:").lower()
+        if ice_cream == "yes":
+            item_cost += prices["ice cream"]
+    elif user_food == "cheesecake":
+        w_c = input("Add whipped cream? yes/no: ").lower()
+        if w_c == "yes":
+            item_cost += prices["whipped cream"]
+    else:
+        print("Invalid choice")
+    order.append((user_food.capitalize(), item_cost))  # Append to order
+    user_option()
+
+
+# Main execution
+print("Welcome to Nomad Food Truck!")
+menu()
+user_option() 
